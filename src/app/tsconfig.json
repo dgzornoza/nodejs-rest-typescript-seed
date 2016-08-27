@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "rootDir": "..",
+        "noImplicitAny": false,
+        "noEmitOnError": true,
+        "removeComments": false,
+        "target": "es5",
+        "declaration": false,
+        "sourceMap": true
+    },
+    "exclude": [
+        "bower_components",
+        "node_modules",
+        "bin",
+        "tools",
+        "typings"
+    ]
+}
