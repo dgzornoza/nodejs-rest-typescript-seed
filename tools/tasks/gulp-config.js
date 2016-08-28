@@ -38,7 +38,7 @@ var tasksConfig = (function ()
 {
     var _sourceFolder = "src/";
     var _sourceContentFolder = _sourceFolder + "content/";
-    var _outputFolder = "dist/";
+    var _outputFolder = "wwwroot/";
     var _outputContentFolder = _outputFolder + "content/";
 
     return {

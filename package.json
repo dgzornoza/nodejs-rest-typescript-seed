@@ -2,7 +2,7 @@
     "name": "nodejs-rest-typescript-seed",
     "version": "1.0.0",
     "description": "Nodejs seed project for create full rest services using express and typescript'",
-    "main": "bin/app/main.js",
+    "main": "wwwroot/app/main.js",
     
     "author": "David González Zornoza",
     "license": "MIT",
@@ -11,6 +11,7 @@
         "postinstall": "typings install",
 
         "prestart": "npm install",
+        "start": "node dist/app/main.js",
 
         "pretest" :"",
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,20 +26,26 @@
     },
 
     "devDependencies": {
-
-        "express": "^4.14.0",
         
         "del": "^2.2.0",
         "gulp": "^3.9.1",
         "gulp-debug": "^2.1.2",
+        "gulp-sourcemaps": "^1.6.0",
         "gulp-template": "^4.0.0",
         "gulp-tslint": "^5.0.0",
         "gulp-typescript": "2.13.0",
-        "gulp-sourcemaps": "^1.6.0",
 
         "tslint": "^3.8.1",
         "typescript": "1.8.10",
         "typings": "^1.3.3"
+    },
+
+    "dependencies": {        
+        "body-parser": "~1.15.1",
+        "cookie-parser": "~1.4.3",
+        "debug": "~2.2.0",
+        "express": "~4.14.0",
+        "morgan": "~1.7.0"
     }
 
 }
