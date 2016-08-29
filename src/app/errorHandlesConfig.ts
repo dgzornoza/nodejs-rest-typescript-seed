@@ -9,8 +9,8 @@ export class ErrorHandlesConfig {
 
         // catch 404 and forward to error handler
         express.use((req: Request, res: Response, next?: NextFunction): any => {
-            
-            let err = new Error("Not Found") as any;
+
+            let err: any = new Error("Not Found") as any;
             err.status = 404;
             next(err);
         });
@@ -21,11 +21,11 @@ export class ErrorHandlesConfig {
         // will print stacktrace
         if (express.get("env") === "development") {
 
-            express.use((err: any, req: Request, res: Response, next: NextFunction): any => {                
+            express.use((err: any, req: Request, res: Response, next: NextFunction): any => {
                 res.status(err.status || 500);
-                res.render('error', {
-                    message: err.message,
-                    error: err
+                res.render("error", {
+                    error: err,
+                    message: err.message
                 });
             });
         }
@@ -34,9 +34,9 @@ export class ErrorHandlesConfig {
         // no stacktraces leaked to user
         express.use((err: any, req: Request, res: Response, next: NextFunction): any => {
             res.status(err.status || 500);
-            res.render('error', {
-                message: err.message,
-                error: {}
+            res.render("error", {
+                error: {},
+                message: err.message
             });
         });
     }

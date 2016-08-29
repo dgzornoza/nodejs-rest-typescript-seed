@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "es6",
+        "moduleResolution": "classic",
         "rootDir": "..",
         "noImplicitAny": false,
         "noEmitOnError": true,

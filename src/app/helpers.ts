@@ -15,29 +15,10 @@ class Helpers {
         // Loop for split result array
         let result: any[] = [];
         for (let i: number = 0; i < input.length; i += chunks) {
-             result.push(input.slice(i, i + chunks));
+            result.push(input.slice(i, i + chunks));
         }
 
         return result;
-    }
-
-    /**
-     * Normalize a port into a number, string, or false.
-     */
-    public static NormalizePort(val) {
-        var port = parseInt(val, 10);
-
-        if (isNaN(port)) {
-            // named pipe
-            return val;
-        }
-
-        if (port >= 0) {
-            // port number
-            return port;
-        }
-
-        return false;
     }
 }
 
@@ -74,21 +55,21 @@ interface String {
 
 /* tslint:disable no-invalid-this */
 String.prototype.splitWithRemove = function (separator: string | RegExp, removeItemString: string, limit?: number): string[] {
-    if ("" == this)  { return new Array(); }        
-    let items = this.split(separator, limit);
+    if ("" === this) { return new Array(); }
+    let items: any = this.split(separator, limit);
 
     for (let i: number = 0; i < items.length; i++) {
-        if (items[i] == removeItemString) {
+        if (items[i] === removeItemString) {
             items.splice(i, 1);
             i--;
         }
-    }    
-    
+    }
+
     return items;
-}
+};
 
 String.prototype.ensureSlash = function (): string {
-    return this.replace(/\/?$/, '/');  
-}
+    return this.replace(/\/?$/, "/");
+};
 /* tslint:enable no-invalid-this */
 
