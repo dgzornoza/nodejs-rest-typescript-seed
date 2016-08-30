@@ -11,7 +11,7 @@
         "postinstall": "typings install",
 
         "prestart": "npm install",
-        "start": "node wwwroot/app/config.js",
+        "start": "set DEBUG=* && set NODE_ENV=development && node wwwroot/app/main.js",
 
         "pretest" :"",
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,7 +20,7 @@
         "rebuild-debug": "gulp clean-output && gulp build-debug",
         "build-release": "gulp clean-output && gulp build-release",
 
-        "watch": "npm install && npm run build-debug && gulp watch-source",
+        "watch": "npm run build-debug && gulp watch-source",
 
         "gulp": "gulp",
         "typings": "typings"

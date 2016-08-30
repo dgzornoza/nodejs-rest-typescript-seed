@@ -46,7 +46,7 @@ function build(tsBuildProject, generateSourceMaps)
         tsResult = tsResult.pipe(sourcemaps.init());
     }
     
-    tsResult = tsResult.pipe(tsc(tsBuildProject));
+    tsResult = tsResult.pipe(tsc(tsBuildProject, undefined, tsc.reporter.longReporter()));
 
     // send javascript to output folder
     var js = tsResult.js;
@@ -72,7 +72,7 @@ function lint(source)
 {
     return gulp.src(source)
     .pipe(tslint())
-    .pipe(tslint.report("prose",
+    .pipe(tslint.report("msbuild",
     {
         emitError: false,
         summarizeFailureOutput: true

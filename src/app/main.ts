@@ -21,7 +21,7 @@ class ServerApp {
     private _port: number;
     private _debug: debugModule.IDebugger;
 
-    /** Default constsructor */
+    /** Default constructor */
     constructor() {
 
         // configure debug

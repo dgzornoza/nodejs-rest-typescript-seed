@@ -9,7 +9,47 @@
     "tasks": [
         {
             "taskName": "watch",
-            "args": ["run", "watch"]
+            "args": [
+                "run",
+                "watch"
+            ],
+            // Make this the default build command.
+            "isBuildCommand": true,
+            // Watching
+            "isWatching": true,
+            // Show the output window only if unrecognized errors occur.
+            "showOutput": "always",
+            // Use the standard less compilation problem matcher.
+            "problemMatcher": [
+                {
+                    "owner": "gulp-typescript",
+                    "fileLocation": "absolute",
+                    "pattern": {
+                        "regexp": "^\\[gulp-typescript\\] (.*)\\((\\d*),(\\d*)\\): (error|warning) (.*)$",
+                        "file": 1,
+                        "line": 2,
+                        "column": 3,
+                        "severity": 4,
+                        "message": 5
+                    }
+                },
+                {
+                    "owner": "gulp-tslint",
+                    "fileLocation": "absolute",
+                    "pattern": {
+                        // using A-Z so that we don't capture the more important error in previous problemMatcher,
+                        // RegEx Prose (filelocation should be 'relative')
+                        // "regexp": ".*\\[gulp-tslint\\] (error|warning) (.*)\\[(\\d*), (\\d*)\\]: ([A-Z|a-z].*)$",
+                        // RegEx msbuild (filelocation should be 'absolute')
+                        "regexp": "(.*\\.ts)\\((\\d*),(\\d*)\\): (error|warning) ([A-Z|a-z].*)$",
+                        "file": 1,
+                        "line": 2,
+                        "column": 3,
+                        "severity": 4,
+                        "message": 5
+                    }
+                }
+            ]
         }
     ]
 }
