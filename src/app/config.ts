@@ -11,4 +11,6 @@ export class Config {
     /** application name */
     public static APP_NAME: string = "<%= APP_NAME %>";
 
+    public static SERVER_PORT: string = "<%= SERVER_PORT %>";
+
 }

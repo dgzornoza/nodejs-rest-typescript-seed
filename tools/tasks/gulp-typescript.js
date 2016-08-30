@@ -17,15 +17,15 @@ var tsProject = tsc.createProject("src/app/tsconfig.json", { typescript: require
 /**
  * lint and build TypeScript in debug mode
  */
-gulp.task("build-ts-debug", ["lint-ts"], function () {
-    return build(tsProject);
+gulp.task("build-ts-debug", ["lint-ts"], function () {    
+    return build(tsProject, true);
 });
 
 /**
- * lint and build TypeScript in debug mode
+ * lint and build TypeScript in release mode
  */
-gulp.task("build-ts-relase", ["lint-ts"], function () {
-    return build(tsProject);
+gulp.task("build-ts-release", ["lint-ts"], function () {
+    return build(tsProject, false);
 });
 
 /**
@@ -37,16 +37,34 @@ gulp.task("lint-ts", function () {
 
 
 
-function build(tsBuildProject)
+function build(tsBuildProject, generateSourceMaps)
 {
     // compile typescript
-    var tsResult = tsBuildProject.src()
-    .pipe(sourcemaps.init()) 
-    .pipe(tsc(tsBuildProject));
+    var tsResult = tsBuildProject.src();
+
+    if (generateSourceMaps) {
+        tsResult = tsResult.pipe(sourcemaps.init());
+    }
+    
+    tsResult = tsResult.pipe(tsc(tsBuildProject));
+
     // send javascript to output folder
-    return tsResult.js
-    .pipe(sourcemaps.write(".", {sourceRoot: "../../src/"}))
-    .pipe(gulp.dest(tasksConfig.outputFolder));
+    var js = tsResult.js;
+
+    if (generateSourceMaps) {
+        js = js.pipe(sourcemaps.write(".", 
+        { 
+            includeContent: false, 
+            sourceRoot: function(file) {                
+                var relativePathsCount = file.sourceMap.file.split('/').length -1;
+                return "../" + "../".repeat(relativePathsCount) + "src/";
+            }
+        }));
+    }
+
+    js = js.pipe(gulp.dest(tasksConfig.outputFolder));
+
+    return js;
 };
 
 

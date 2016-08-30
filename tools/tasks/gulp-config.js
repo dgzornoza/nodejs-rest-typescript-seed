@@ -62,12 +62,14 @@ var tasksConfig = (function ()
 
             debug: {
 	            BASE_URL: "/",
+                SERVER_PORT: "5000",
                 APP_NAME: "nodejs.ts.sample",
                 DEBUG_MODE: "true",
                 MINIFIED_EXT: ".min"
             },
             release: {
 	            BASE_URL: "/",
+                SERVER_PORT: "5000",
                 APP_NAME: "nodejs.ts.sample",
                 DEBUG_MODE: "false",
                 MINIFIED_EXT: ""

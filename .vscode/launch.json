@@ -20,8 +20,26 @@
             },
             "externalConsole": false,
             "sourceMaps": true,
-            "outDir": "${workspaceRoot}/wwwroot",
+            "outDir": "${workspaceRoot}/wwwroot/",
             "trace": "sm"
+        },
+        {
+            "name": "Gulp Task",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/gulp/bin/gulp.js",
+            "stopOnEntry": false,
+            "args": ["build-debug"],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": null,
+            "runtimeExecutable": null,
+            "runtimeArgs": [
+                "--nolazy"
+            ],
+            "env": { },
+            "externalConsole": false,
+            "sourceMaps": false,
+            "outDir": null            
         },
         {
             "name": "Attach",

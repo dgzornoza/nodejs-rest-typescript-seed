@@ -20,10 +20,10 @@ export class ErrorHandlesConfig {
             next(err);
         });
 
-        // development error handler
-        // will print stacktrace
-        if (express.get("env") === "development") {
 
+        if (express.get("env") === "development") {
+            // development error handler
+            // will print stacktrace
             express.use((err: any, req: Request, res: Response, next: NextFunction): any => {
                 res.status(err.status || 500);
                 res.render("error", {
@@ -31,17 +31,18 @@ export class ErrorHandlesConfig {
                     message: err.message
                 });
             });
-        }
 
-        // production error handler
-        // no stacktraces leaked to user
-        express.use((err: any, req: Request, res: Response, next: NextFunction): any => {
-            res.status(err.status || 500);
-            res.render("error", {
-                error: {},
-                message: err.message
+        } else {
+            // production error handler
+            // no stacktraces leaked to user
+            express.use((err: any, req: Request, res: Response, next: NextFunction): any => {
+                res.status(err.status || 500);
+                res.render("error", {
+                    error: {},
+                    message: err.message
+                });
             });
-        });
+        }
     }
 }
 

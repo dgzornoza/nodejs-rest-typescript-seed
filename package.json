@@ -18,6 +18,7 @@
 
         "build-debug": "gulp build-debug",
         "rebuild-debug": "gulp clean-output && gulp build-debug",
+        "build-release": "gulp clean-output && gulp build-release",
 
         "watch": "npm install && npm run build-debug && gulp watch-source",
 

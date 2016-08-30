@@ -9,17 +9,8 @@ import * as httpModule from "http";
 import { ErrorHandlesConfig } from "./errorHandlesConfig";
 import { Config } from "./config";
 
-// var routes = require("./routes/index");
-// var users = require("./routes/users");
-
-
-
-
-
-// app.use("/", rotes);
-// app.use("/users", users);
-
-
+// import * as users from "./controllers/users";
+let users = require("./controllers/users");
 
 
 class ServerApp {
@@ -69,7 +60,7 @@ class ServerApp {
 
 
         // Configure routes
-
+        this._express.use("/users", users as any);
 
         // configure languages
 
@@ -84,7 +75,7 @@ class ServerApp {
 
 
         // Get port from environment and store in Express.
-        this._port = parseInt(process.env.PORT, 10) || 3000;
+        this._port = parseInt(process.env.PORT, 10) || parseInt(Config.SERVER_PORT, 10) || 3000;
         this._express.set("port", this._port);
 
         // Create HTTP server.
@@ -94,7 +85,6 @@ class ServerApp {
         this._server.listen(this._port);
         this._server.on("error", (error: NodeJS.ErrnoException) => { this._onError(error); });
         this._server.on("listening", () => { this._onListening(); });
-
     }
 
 
