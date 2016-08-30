@@ -6,9 +6,8 @@ import * as bodyParserModule from "body-parser";
 import * as debugModule from "debug";
 import * as httpModule from "http";
 
-import { ErrorHandlesConfig } from "app/errorHandlesConfig";
-import "helpers";
-
+import { ErrorHandlesConfig } from "./errorHandlesConfig";
+import { Config } from "./config";
 
 // var routes = require("./routes/index");
 // var users = require("./routes/users");
@@ -29,10 +28,13 @@ class ServerApp {
     private _express: expressModule.Express;
     private _server: httpModule.Server;
     private _port: number;
-    private _debug: debugModule.IDebug;
+    private _debug: debugModule.IDebugger;
 
-    /** Default constructor */
+    /** Default constsructor */
     constructor() {
+
+        // configure debug
+        this._debug = debugModule(`${Config.APP_NAME}: server`);
 
         // create node express server app
         this._express = expressModule();
@@ -49,7 +51,7 @@ class ServerApp {
     }
 
     /** Property for get nodejs debug module */
-    public get Debug(): debugModule.IDebug {
+    public get Debug(): debugModule.IDebugger {
         return this._debug;
     }
 
@@ -90,8 +92,8 @@ class ServerApp {
 
         // Listen on provided port, on all network interfaces.
         this._server.listen(this._port);
-        this._server.on("error", this._onError);
-        this._server.on("listening", this._onListening);
+        this._server.on("error", (error: NodeJS.ErrnoException) => { this._onError(error); });
+        this._server.on("listening", () => { this._onListening(); });
 
     }
 
@@ -105,18 +107,16 @@ class ServerApp {
             throw error;
         }
 
-        let bind: string = typeof this._port === "string"
-            ? "Pipe " + this._port
-            : "Port " + this._port;
+        let bind: string = typeof this._port === "string" ? `Pipe ${this._port}` : `Port ${this._port}`;
 
         // handle specific listen errors with friendly messages
         switch (error.code) {
             case "EACCES":
-                console.error(bind + " requires elevated privileges");
+                console.error(`${bind} requires elevated privileges`);
                 process.exit(1);
                 break;
             case "EADDRINUSE":
-                console.error(bind + " is already in use");
+                console.error(`${bind} is already in use`);
                 process.exit(1);
                 break;
             default:
@@ -129,10 +129,8 @@ class ServerApp {
      */
     private _onListening(): void {
         let addr: any = this._server.address();
-        let bind: string = typeof addr === "string"
-            ? "pipe " + addr
-            : "port " + addr.port;
-        debug("Listening on " + bind);
+        let bind: string = typeof addr === "string" ? `Pipe ${addr}` : `Port ${addr.port}`;
+        this._debug(`Listening on ${bind}`);
     }
 
 }

@@ -11,7 +11,7 @@
         "postinstall": "typings install",
 
         "prestart": "npm install",
-        "start": "node dist/app/main.js",
+        "start": "node wwwroot/app/config.js",
 
         "pretest" :"",
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,7 +19,7 @@
         "build-debug": "gulp build-debug",
         "rebuild-debug": "gulp clean-output && gulp build-debug",
 
-        "watch": "gulp watch-source",
+        "watch": "npm install && npm run build-debug && gulp watch-source",
 
         "gulp": "gulp",
         "typings": "typings"

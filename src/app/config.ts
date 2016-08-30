@@ -3,7 +3,12 @@
 /* tslint:enable no-reference */
 
 
-// base url for website/virtual directory/platform (Ended with'/')
-// const BASE_URL: string = "<%= BASE_URL %>";
-// application name
-// const APP_NAME: string = "<%= APP_NAME %>";
+export class Config {
+
+    // base url for website/virtual directory/platform (Ended with'/')
+    // const BASE_URL: string = "<%= BASE_URL %>";
+
+    /** application name */
+    public static APP_NAME: string = "<%= APP_NAME %>";
+
+}

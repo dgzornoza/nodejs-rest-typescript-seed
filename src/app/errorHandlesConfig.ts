@@ -2,9 +2,14 @@
 import * as expressModule from "express";
 import { Request, Response, NextFunction } from "express-serve-static-core";
 
+/**
+ * Class for configure error handle in midleware
+ */
 export class ErrorHandlesConfig {
 
-    /** Function for initialize error handles in node express */
+    /** Function for initialize error handles in node express
+     * @param express express module
+     */
     public static initialize(express: expressModule.Express): void {
 
         // catch 404 and forward to error handler
@@ -14,8 +19,6 @@ export class ErrorHandlesConfig {
             err.status = 404;
             next(err);
         });
-
-        // error handlers
 
         // development error handler
         // will print stacktrace

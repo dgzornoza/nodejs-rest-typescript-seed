@@ -1,12 +1,12 @@
 {
     "compilerOptions": {
-        "module": "es6",
-        "moduleResolution": "classic",
+        "module": "commonjs",
+        "moduleResolution": "node",
         "rootDir": "..",
         "noImplicitAny": false,
         "noEmitOnError": true,
         "removeComments": false,
-        "target": "es6",
+        "target": "es5",
         "declaration": false,
         "sourceMap": true
     },
