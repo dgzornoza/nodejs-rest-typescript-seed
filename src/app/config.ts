@@ -6,12 +6,11 @@
 
 export class Config {
 
-    // base url for website/virtual directory/platform (Ended with'/')
-    // const BASE_URL: string = "<%= BASE_URL %>";
-
     /** application name */
     public static APP_NAME: string = "<%= APP_NAME %>";
-
+    /** Server port */
     public static SERVER_PORT: string = "<%= SERVER_PORT %>";
+    /** Source app folder */
+    public static SOURCE_FOLDER: string = "<%= SOURCE_FOLDER %>";
 
 }

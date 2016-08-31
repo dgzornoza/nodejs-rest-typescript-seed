@@ -34,17 +34,10 @@ class ServerApp {
 
     }
 
-    /** Property for get nodejs express module */
-    public get Express(): expressModule.Express {
-        return this._express;
-    }
-
     /** Property for get nodejs debug module */
     public get Debug(): debugModule.IDebugger {
         return this._debug;
     }
-
-
 
     /** Configure server midleware */
     private _serverConfig(): void {
@@ -58,7 +51,7 @@ class ServerApp {
 
 
         // Configure consign for auto load services
-        consignModule()
+        consignModule({cwd: Config.SOURCE_FOLDER})
             .include("controllers")
             .into(this._express);
         // this._express.use("/users", users as any);

@@ -61,14 +61,14 @@ var tasksConfig = (function ()
         environmentVars: {
 
             debug: {
-	            BASE_URL: "/",
+	            SOURCE_FOLDER: _outputFolder + "app/",
                 SERVER_PORT: "5000",
                 APP_NAME: "nodejs.ts.sample",
                 DEBUG_MODE: "true",
                 MINIFIED_EXT: ".min"
             },
             release: {
-	            BASE_URL: "/",
+	            SOURCE_FOLDER: "./app/",
                 SERVER_PORT: "5000",
                 APP_NAME: "nodejs.ts.sample",
                 DEBUG_MODE: "false",
