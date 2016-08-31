@@ -1,4 +1,5 @@
 import * as expressModule from "express";
+import * as consignModule from "consign";
 import * as pathModule from "path";
 import * as morganModule from "morgan";
 import * as cookieParserModule from "cookie-parser";
@@ -8,9 +9,6 @@ import * as httpModule from "http";
 
 import { ErrorHandlesConfig } from "./errorHandlesConfig";
 import { Config } from "./config";
-
-// import * as users from "./controllers/users";
-let users = require("./controllers/users");
 
 
 class ServerApp {
@@ -59,8 +57,11 @@ class ServerApp {
         this._express.use(expressModule.static(pathModule.join(__dirname, "public")));
 
 
-        // Configure routes
-        this._express.use("/users", users as any);
+        // Configure consign for auto load services
+        consignModule()
+            .include("controllers")
+            .into(this._express);
+        // this._express.use("/users", users as any);
 
         // configure languages
 

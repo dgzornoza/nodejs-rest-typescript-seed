@@ -72,7 +72,7 @@ function lint(source)
 {
     return gulp.src(source)
     .pipe(tslint())
-    .pipe(tslint.report("msbuild",
+    .pipe(tslint.report("prose",
     {
         emitError: false,
         summarizeFailureOutput: true

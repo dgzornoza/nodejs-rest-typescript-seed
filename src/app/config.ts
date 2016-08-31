@@ -1,4 +1,5 @@
 /* tslint:disable no-reference */
+/// <reference path="../typings/index.d.ts" />
 /// <reference path="../../typings/index.d.ts" />
 /* tslint:enable no-reference */
 

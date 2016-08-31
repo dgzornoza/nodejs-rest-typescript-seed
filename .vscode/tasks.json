@@ -12,7 +12,7 @@
             "args": [
                 "run",
                 "watch"
-            ],
+            ],            
             // Make this the default build command.
             "isBuildCommand": true,
             // Watching
@@ -20,33 +20,41 @@
             // Show the output window only if unrecognized errors occur.
             "showOutput": "always",
             // Use the standard less compilation problem matcher.
-            "problemMatcher": [
-                {
-                    "owner": "gulp-typescript",
-                    "fileLocation": "absolute",
-                    "pattern": {
-                        "regexp": "^\\[gulp-typescript\\] (.*)\\((\\d*),(\\d*)\\): (error|warning) (.*)$",
-                        "file": 1,
-                        "line": 2,
-                        "column": 3,
-                        "severity": 4,
-                        "message": 5
-                    }
-                },
-                {
+            "problemMatcher": [                
+                // currently vscode use typescript compiler as default
+                // {
+                //     "owner": "gulp-typescript",
+                //     "fileLocation": "absolute",
+                //     "pattern": {
+                //         "regexp": "^\\[gulp-typescript\\] (.*)\\((\\d*),(\\d*)\\): (error|warning) (.*)$",
+                //         "file": 1,
+                //         "line": 2,
+                //         "column": 3,
+                //         "severity": 4,
+                //         "message": 5
+                //     },
+                //     "watching": {
+                //         "activeOnStart": true,
+                //         "beginsPattern": ".*Starting 'build-ts-debug'\\.\\.\\.",
+                //         "endsPattern": ".*Finished 'build-ts-debug' after.*"
+                //     }
+                // },
+                {                    
                     "owner": "gulp-tslint",
-                    "fileLocation": "absolute",
+                    "severity": "warning",
+                    "fileLocation": "relative",                    
                     "pattern": {
-                        // using A-Z so that we don't capture the more important error in previous problemMatcher,
-                        // RegEx Prose (filelocation should be 'relative')
-                        // "regexp": ".*\\[gulp-tslint\\] (error|warning) (.*)\\[(\\d*), (\\d*)\\]: ([A-Z|a-z].*)$",
-                        // RegEx msbuild (filelocation should be 'absolute')
-                        "regexp": "(.*\\.ts)\\((\\d*),(\\d*)\\): (error|warning) ([A-Z|a-z].*)$",
-                        "file": 1,
-                        "line": 2,
-                        "column": 3,
-                        "severity": 4,
+                        // RegEx Prose
+                        "regexp": "^.*\\[gulp-tslint\\] (error|warning) (.*)\\[(\\d*), (\\d*)\\]: (.*)$",                        
+                        "file": 2,
+                        "line": 3,
+                        "column": 4,
                         "message": 5
+                    },
+                    "watching": {
+                        "activeOnStart": false,
+                        "beginsPattern": ".*Starting 'lint-ts'\\.\\.\\.",
+                        "endsPattern": ".*Finished 'lint-ts' after.*"
                     }
                 }
             ]
