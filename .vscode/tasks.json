@@ -12,7 +12,7 @@
             "args": [
                 "run",
                 "watch"
-            ],            
+            ],
             // Make this the default build command.
             "isBuildCommand": true,
             // Watching
@@ -20,7 +20,7 @@
             // Show the output window only if unrecognized errors occur.
             "showOutput": "always",
             // Use the standard less compilation problem matcher.
-            "problemMatcher": [                
+            "problemMatcher": [
                 // currently vscode use typescript compiler as default
                 // {
                 //     "owner": "gulp-typescript",
@@ -39,24 +39,26 @@
                 //         "endsPattern": ".*Finished 'build-ts-debug' after.*"
                 //     }
                 // },
-                {                    
-                    "owner": "gulp-tslint",
-                    "severity": "warning",
-                    "fileLocation": "relative",                    
-                    "pattern": {
-                        // RegEx Prose
-                        "regexp": "^.*\\[gulp-tslint\\] (error|warning) (.*)\\[(\\d*), (\\d*)\\]: (.*)$",                        
-                        "file": 2,
-                        "line": 3,
-                        "column": 4,
-                        "message": 5
-                    },
-                    "watching": {
-                        "activeOnStart": false,
-                        "beginsPattern": ".*Starting 'lint-ts'\\.\\.\\.",
-                        "endsPattern": ".*Finished 'lint-ts' after.*"
-                    }
-                }
+
+                // vscode tslint extension implements this functionality (uncomment if not can install extension)
+                // {
+                //     "owner": "gulp-tslint",
+                //     "severity": "warning",
+                //     "fileLocation": "relative",
+                //     "pattern": {
+                //         // RegEx Prose
+                //         "regexp": "^.*\\[gulp-tslint\\] (error|warning) (.*)\\[(\\d*), (\\d*)\\]: (.*)$",
+                //         "file": 2,
+                //         "line": 3,
+                //         "column": 4,
+                //         "message": 5
+                //     },
+                //     "watching": {
+                //         "activeOnStart": false,
+                //         "beginsPattern": ".*Starting 'lint-ts'\\.\\.\\.",
+                //         "endsPattern": ".*Finished 'lint-ts' after.*"
+                //     }
+                // }
             ]
         }
     ]
