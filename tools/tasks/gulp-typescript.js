@@ -17,7 +17,7 @@ var tsProject = tsc.createProject("src/app/tsconfig.json", { typescript: require
 /**
  * lint and build TypeScript in debug mode
  */
-gulp.task("build-ts-debug", ["lint-ts"], function () {    
+gulp.task("build-ts-debug", ["lint-ts"], function () {
     return build(tsProject, true);
 });
 
@@ -45,20 +45,21 @@ function build(tsBuildProject, generateSourceMaps)
     if (generateSourceMaps) {
         tsResult = tsResult.pipe(sourcemaps.init());
     }
-    
-    tsResult = tsResult.pipe(tsc(tsBuildProject, undefined, tsc.reporter.longReporter()));
+
+    tsResult = tsResult.pipe(tsBuildProject(tsc.reporter.longReporter()));
 
     // send javascript to output folder
     var js = tsResult.js;
 
     if (generateSourceMaps) {
-        js = js.pipe(sourcemaps.write(".", 
-        { 
-            includeContent: false, 
-            sourceRoot: function(file) {                
-                var relativePathsCount = file.sourceMap.file.split('/').length -1;
-                return "../" + "../".repeat(relativePathsCount) + "src/";
-            }
+        js = js.pipe(sourcemaps.write(".",
+        {
+            includeContent: false,
+            sourceRoot: "../Freepublisher.Nunsys.Www/src/"
+            // sourceRoot: function(file) {
+            //     var relativePathsCount = file.sourceMap.file.split('/').length -1;
+            //     return "../" + "../".repeat(relativePathsCount) + "src/";
+            // }
         }));
     }
 
@@ -71,12 +72,13 @@ function build(tsBuildProject, generateSourceMaps)
 function lint(source)
 {
     return gulp.src(source)
-    .pipe(tslint())
-    .pipe(tslint.report("prose",
-    {
-        emitError: false,
-        summarizeFailureOutput: true
-    }));
+        .pipe(tslint({
+            formatter: "prose"
+        }))
+        .pipe(tslint.report( {
+            emitError: false,
+            summarizeFailureOutput: true
+        }))
 };
 
 
