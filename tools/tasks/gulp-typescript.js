@@ -53,7 +53,7 @@ function build(tsBuildProject, generateSourceMaps) {
     if (generateSourceMaps) {
         js = js.pipe(sourcemaps.write(".", {
             includeContent: false,
-            sourceRoot: "../src/"
+            sourceRoot: "../src/app"
                 // sourceRoot: function(file) {
                 //     var relativePathsCount = file.sourceMap.file.split('/').length -1;
                 //     return "../" + "../".repeat(relativePathsCount) + "src/";
