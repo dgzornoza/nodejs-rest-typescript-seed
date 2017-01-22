@@ -17,28 +17,27 @@ var tsProject = tsc.createProject("src/app/tsconfig.json", { typescript: require
 /**
  * lint and build TypeScript in debug mode
  */
-gulp.task("build-ts-debug", ["lint-ts"], function () {
+gulp.task("build-ts-debug", ["lint-ts"], function() {
     return build(tsProject, true);
 });
 
 /**
  * lint and build TypeScript in release mode
  */
-gulp.task("build-ts-release", ["lint-ts"], function () {
+gulp.task("build-ts-release", ["lint-ts"], function() {
     return build(tsProject, false);
 });
 
 /**
  * lint typescript source code
  */
-gulp.task("lint-ts", function () {
+gulp.task("lint-ts", function() {
     return lint(tasksConfig.sourceScriptFiles);
 });
 
 
 
-function build(tsBuildProject, generateSourceMaps)
-{
+function build(tsBuildProject, generateSourceMaps) {
     // compile typescript
     var tsResult = tsBuildProject.src();
 
@@ -52,14 +51,13 @@ function build(tsBuildProject, generateSourceMaps)
     var js = tsResult.js;
 
     if (generateSourceMaps) {
-        js = js.pipe(sourcemaps.write(".",
-        {
+        js = js.pipe(sourcemaps.write(".", {
             includeContent: false,
-            sourceRoot: "../Freepublisher.Nunsys.Www/src/"
-            // sourceRoot: function(file) {
-            //     var relativePathsCount = file.sourceMap.file.split('/').length -1;
-            //     return "../" + "../".repeat(relativePathsCount) + "src/";
-            // }
+            sourceRoot: "../src/"
+                // sourceRoot: function(file) {
+                //     var relativePathsCount = file.sourceMap.file.split('/').length -1;
+                //     return "../" + "../".repeat(relativePathsCount) + "src/";
+                // }
         }));
     }
 
@@ -69,19 +67,13 @@ function build(tsBuildProject, generateSourceMaps)
 };
 
 
-function lint(source)
-{
+function lint(source) {
     return gulp.src(source)
         .pipe(tslint({
             formatter: "prose"
         }))
-        .pipe(tslint.report( {
+        .pipe(tslint.report({
             emitError: false,
             summarizeFailureOutput: true
         }))
 };
-
-
-
-
-
